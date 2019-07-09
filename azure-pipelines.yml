@@ -12,10 +12,11 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-# do this before all your .NET Core tasks
 steps:
-- script: dotnet restore
-- task: DotNetCoreInstaller@0
+- task: DotNetCoreCLI@2
+  displayName: 'Install dotnetsay'
   inputs:
-    version: '2.1.300' # replace this value with the version that you need for your project
-# ...
+    command: custom
+    projects: '**/*.csproj'
+    custom: tool
+    arguments: 'install -g dotnetsay'
